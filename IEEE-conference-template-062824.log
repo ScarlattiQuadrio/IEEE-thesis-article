@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.30)  14 APR 2026 17:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.30)  14 APR 2026 17:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -289,33 +289,41 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: System_Overview.jpg Graphic file (type jpg)
 <use System_Overview.jpg>
 Package pdftex.def Info: System_Overview.jpg  used on input line 128.
-(pdftex.def)             Requested size: 412.80157pt x 216.77669pt.
+(pdftex.def)             Requested size: 464.39685pt x 243.87125pt.
 
 
+<deviceTop.jpg, id=11, 660.96938pt x 300.3722pt>
+File: deviceTop.jpg Graphic file (type jpg)
+<use deviceTop.jpg>
+Package pdftex.def Info: deviceTop.jpg  used on input line 191.
+(pdftex.def)             Requested size: 226.79846pt x 103.06476pt.
 
 
 [2]
 
 
 
-[3 <./System_Overview.jpg>]
-<featureImportance.jpg, id=24, 867.24pt x 578.16pt>
+[3 <./System_Overview.jpg> <./deviceTop.jpg>]
+
+<featureImportance.jpg, id=25, 867.24pt x 578.16pt>
 File: featureImportance.jpg Graphic file (type jpg)
 <use featureImportance.jpg>
-Package pdftex.def Info: featureImportance.jpg  used on input line 280.
-(pdftex.def)             Requested size: 361.19843pt x 240.79648pt.
-
-
-<testConfusionMatrixTinyMLRaw.jpg, id=25, 578.16pt x 433.62pt>
+Package pdftex.def Info: featureImportance.jpg  used on input line 279.
+(pdftex.def)             Requested size: 252.0pt x 167.99733pt.
+<testConfusionMatrixTinyMLRaw.jpg, id=26, 578.16pt x 433.62pt>
 File: testConfusionMatrixTinyMLRaw.jpg Graphic file (type jpg)
 <use testConfusionMatrixTinyMLRaw.jpg>
-Package pdftex.def Info: testConfusionMatrixTinyMLRaw.jpg  used on input line 299.
+Package pdftex.def Info: testConfusionMatrixTinyMLRaw.jpg  used on input line 298.
 (pdftex.def)             Requested size: 252.0pt x 189.00032pt.
-<testConfusionMatrixTinyMLSmoothed.jpg, id=26, 578.16pt x 433.62pt>
+<testConfusionMatrixTinyMLSmoothed.jpg, id=27, 578.16pt x 433.62pt>
 File: testConfusionMatrixTinyMLSmoothed.jpg Graphic file (type jpg)
 <use testConfusionMatrixTinyMLSmoothed.jpg>
-Package pdftex.def Info: testConfusionMatrixTinyMLSmoothed.jpg  used on input line 305.
+Package pdftex.def Info: testConfusionMatrixTinyMLSmoothed.jpg  used on input line 304.
 (pdftex.def)             Requested size: 252.0pt x 189.00032pt.
+
+
+[4 <./featureImportance.jpg>]
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -329,29 +337,25 @@ Before submitting the final camera ready copy, remember to:
 
 
 
-[4]
-
-
-
-[5 <./featureImportance.jpg> <./testConfusionMatrixTinyMLRaw.jpg> <./testConfusionMatrixTinyMLSmoothed.jpg>] (./IEEE-conference-template-062824.aux)
+[5 <./testConfusionMatrixTinyMLRaw.jpg> <./testConfusionMatrixTinyMLSmoothed.jpg>] (./IEEE-conference-template-062824.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4223 strings out of 473579
- 66289 string characters out of 5732263
- 473351 words of memory out of 5000000
- 27090 multiletter control sequences out of 15000+600000
+ 4231 strings out of 473579
+ 66439 string characters out of 5732263
+ 473365 words of memory out of 5000000
+ 27098 multiletter control sequences out of 15000+600000
  594467 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,65p,489b,334s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on IEEE-conference-template-062824.pdf (5 pages, 968551 bytes).
+Output written on IEEE-conference-template-062824.pdf (5 pages, 1054888 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

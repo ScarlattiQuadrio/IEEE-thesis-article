@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1776182503.17763 "d:/Fct/Thesis/IEEE-thesis-article/IEEE-conference-template-062824.tex" "IEEE-conference-template-062824.pdf" "IEEE-conference-template-062824" 1776182504.70755 0
-  "IEEE-conference-template-062824.aux" 1776182504 2984 7033a8b3f624bdc57ff2b4c6052d6cc4 "pdflatex"
-  "IEEE-conference-template-062824.tex" 1776182502 25680 1b0fbe50be40007d638de67745917501 ""
+["pdflatex"] 1776184809.42986 "d:/Fct/Thesis/IEEE-thesis-article/IEEE-conference-template-062824.tex" "IEEE-conference-template-062824.pdf" "IEEE-conference-template-062824" 1776184810.82111 0
+  "IEEE-conference-template-062824.aux" 1776184810 3260 58c6f113d9916ce20c54a25335451b15 "pdflatex"
+  "IEEE-conference-template-062824.tex" 1776184806 27836 db631b93cee46b7f3113b3ea89250d43 ""
   "IEEEtran.cls" 1775718333 288304 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
   "System_Overview.jpg" 1770296811 62340 ccb6c798f9a3ce6c846a7bbc21381dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1727711326 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -77,7 +77,8 @@
   "c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727716176 5523052 a6c4264ca43d05e5adfe84e964c2ac4c ""
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727716570 3325967 b89fd53ff9f5cf4b94c8430ddf854497 ""
   "c:/texlive/2024/texmf.cnf" 1727716139 713 e69b156964470283e0530f5060668171 ""
-  "d:/Fct/Thesis/IEEE-thesis-article/IEEE-conference-template-062824.tex" 1776182502 25680 1b0fbe50be40007d638de67745917501 ""
+  "d:/Fct/Thesis/IEEE-thesis-article/IEEE-conference-template-062824.tex" 1776184806 27836 db631b93cee46b7f3113b3ea89250d43 ""
+  "deviceTop.jpg" 1772720369 84015 efe77547c73b9052118f0a95fefc0dcc ""
   "featureImportance.jpg" 1774536980 440719 c168af6c3c6393d30849be4aa833a6d5 ""
   "testConfusionMatrixTinyMLRaw.jpg" 1774544938 159491 3e014deb24a517c0331631f4d851fe1c ""
   "testConfusionMatrixTinyMLSmoothed.jpg" 1774544939 160814 b21528fc46b04f8b895e750b841a602c ""

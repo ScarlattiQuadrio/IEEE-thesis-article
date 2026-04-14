@@ -125,7 +125,7 @@ The proposed system follows a decentralized, multi-modal architecture designed t
 divided into three primary layers: the sensor-embedded hardware, the mobile edge-computing hub, and the cloud-based inference server (Fig.~\ref{system_architecture}).
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.8\textwidth]{System_Overview.jpg}}
+\centerline{\includegraphics[width=0.9\textwidth]{System_Overview.jpg}}
 \caption{System Overview.}
 \label{systemOverview}
 \end{figure*}
@@ -133,8 +133,9 @@ divided into three primary layers: the sensor-embedded hardware, the mobile edge
 \subsection{Hardware Prototype}
 
 The sensory layer consists of two footwear-mounted prototypes. Each unit is centered around an Arduino Nano 33 BLE Sense Rev2, chosen for its embedded 9-axis Inertial 
-Measurement Unit (IMU) and Bluetooth Low Energy (BLE) module. To provide physiological context, a localized Electromyography (EMG) sensor is integrated into each module to monitor 
+Measurement Unit (IMU) and Bluetooth Low Energy (BLE) module (Fig.~\ref{prototype}). To provide physiological context, a localized Electromyography (EMG) sensor is integrated into each module to monitor 
 the electrical activity of the Gastrocnemius Lateralis.
+
 
 The firmware implements a non-blocking sampling strategy. To maintain sampling periodicity despite the periodic blocking of the BLE radio stack, a microsecond-precision hardware timer tracks "time debt." If a 
 transmission delays the loop, a sequential catch-up routine is executed to preserve the 1ms EMG sampling interval.
@@ -186,13 +187,11 @@ Zero Crossing (ZC) and Slope Sign Change (SSC): These provide a simple represent
 To optimize BLE bandwidth, the system bundles five 30-byte frames into a single 150-byte payload, transmitted to the mobile hub every 100 ms.
 
 
-%\begin{figure}[b]
-%\centerline{\includegraphics[width=\linewidth]{deviceTop.jpg}}
-%\caption{Prototype Picture.}
-%\label{prototype}
-%\end{figure}
-
-
+\begin{figure}[b]
+\centerline{\includegraphics[width=0.9\linewidth]{deviceTop.jpg}}
+\caption{Prototype Picture.}
+\label{prototype}
+\end{figure}
 
 \subsection{Android Application and Data Synchronization}
 
@@ -276,11 +275,11 @@ A core contribution of this work is the validation of EMG integration. Gini Feat
 context that kinematics alone lack. Additionally, the model exhibited a preference for features from the dominant (left) limb, successfully capturing subject-specific 
 biomechanical asymmetries.
 
-\begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.7\linewidth]{featureImportance.jpg}}
+\begin{figure}[b]
+\centerline{\includegraphics[width=\linewidth]{featureImportance.jpg}}
 \caption{Feature Importance.}
 \label{featureImportance}
-\end{figure*}
+\end{figure}
 
 \subsection{Edge vs. Cloud: Real-Time Performance}
 
@@ -306,6 +305,24 @@ activity tracking but may require dynamic windowing for explosive event detectio
 \caption{TinyML with Smoothing Confusion Matrix.}
 \label{CFSmoothed}
 \end{figure}
+
+\section{Discussion and Know Limitations}
+
+The experimental results validate the core hypothesis that integrating EMG with IMU data significantly enhances movement recognition. Feature Importance analysis confirms that RF classifier prioritized the features
+VAR and RMS over kinematic data to resolve biomechanical similarities between movements.
+
+Furthermore, the 500ms Majority Voting window proved to be an effective digital low-pass filter, increasing "Idling" accuracy by 6.4\%. However, this introduces a localized "responsiveness-stability" trade-off. 
+While the resulting latency is acceptable for general activity tracking and fatigue monitoring, the suppression of explosive movements (e.g., rebounds) suggests that future iterations should employ adaptive 
+windowing to maintain sensitivity.
+
+The transition to live basketball testing exposed critical durability issues. The mechanical stress exerted by the wires ripped the USB port of one prototype, necessitating manual hardware reinforcement. Furthermore, 
+the prototype occasionally shifted, introducing mechanical noise. Data integrity for the left limb was specifically impacted by a degradation in the BLE antenna range following hardware strain, leading to periodic 
+packet loss when the android device was not in immediate proximity. Ergonomically, the external power management circuit caused minor discomfort, 
+indicating that a transition to fully integrated, soft-shell enclosures is necessary for long-term athletic use.
+
+The current dataset faces generalizability constraints due to the limited sample size. The models are likely tuned to the specific biomechanical signatures of the test subjects, requiring a broader demographic pool 
+for universal validation. Additionally, the manual labeling process introduced "boundary noise" during movement transitions, slightly affecting training data purity. Finally, the physiological capture of pre-cramp 
+states proved difficult to reproduce safely and consistently. This resulted in challenges for establishing a sustained RMS baseline, making the fatigue monitoring alerts highly sensitive to individual calibration.
 
 \section{Conclusion}
 

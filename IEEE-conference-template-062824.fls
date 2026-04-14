@@ -163,6 +163,11 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ./deviceTop.jpg
+INPUT ./deviceTop.jpg
+INPUT ./deviceTop.jpg
+INPUT ./deviceTop.jpg
+INPUT ./deviceTop.jpg
 INPUT c:/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT ./featureImportance.jpg
 INPUT ./featureImportance.jpg
