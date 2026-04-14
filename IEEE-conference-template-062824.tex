@@ -13,7 +13,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{A Dual-Tier Edge-Cloud Architecture for Real-Time Basketball Activity Recognition and Fatigue Monitoring.\\
+\title{A Dual-Tier Edge-Cloud Architecture for Real-Time Basketball Activity Recognition and Fatigue Monitoring\\
 %{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured for https://ieeexplore.ieee.org  and should not be used}
 %\thanks{Identify applicable funding agency here. If none, delete this.}
 }
@@ -61,7 +61,7 @@ Universidade Nova de Lisboa, Caparica, Portugal}% \\
 Traditional sports wearables rely predominantly on kinematic data from Inertial Measurement Units (IMUs), lacking the physiological context required to classify complex movements and detect muscle fatigue. This 
 paper presents a multi-modal wearable ecosystem designed for basketball analytics, fusing 9-axis IMU data with Electromyography (EMG) via a bilateral footwear prototype. The system utilizes a 
 dual-tier architecture: a quantized TinyML neural network executing locally on an Android edge-computing hub for real-time inference, and a cloud-based Random Forest classifier for deep post-session analysis. 
-Empirical evaluation demonstrates that EMG features, specifically Variance and RMS, are the primary predictors for movement classification, outperforming traditional kinematics. During live testing, the localized 
+Empirical evaluation demonstrates that EMG features, specifically Variance (VAR) and Root Mean Square (RMS), are the primary predictors for movement classification, outperforming traditional kinematics. During live testing, the localized 
 TinyML model achieved 79.5\% accuracy, outperforming the cloud-tier model while eliminating network latency. Furthermore, a 500ms majority-voting smoothing algorithm increased classification stability by 6.4\%, 
 providing a robust framework for real-time athletic monitoring and fatigue-based injury prevention.
 \end{abstract}
@@ -88,7 +88,7 @@ Despite these advancements, standard sports wearables remain limited by their re
 While kinematics provide a trajectory of movement, they lack the neuromuscular context required to differentiate between explosive intent and mere mechanical motion. 
 Furthermore, the reliance on cloud-based processing introduces latency that can be critical in injury-prevention scenarios.
 
-This paper addresses these gaps by proposing a multi-modal, dual-tier architecture that fuses IMU kinematics with Electromyography (EMG). By leveraging Edge AI for 
+This paper addresses these gaps by proposing a multi-modal, dual-tier architecture that fuses Inertial Measurement Units' (IMU) kinematics with Electromyography (EMG). By leveraging Edge Artificial Intelligence for 
 localized inference on a mobile hub, the system provides a low-latency solution for movement classification and fatigue monitoring, ensuring that the physiological cost of 
 movement is captured as accurately as its physical path.
 
@@ -100,14 +100,14 @@ The development of intelligent sports wearables has increasingly focused on obje
 demonstrates a paradigm shift toward multi-modal sensor fusion and edge-based analytics to enhance the accuracy of activity recognition and fatigue detection.
 
 A common challenge in athletic monitoring is the inability of single-modality sensors to provide full biomechanical context. Hwang et al. addressed this by integrating surface 
-electromyography (sEMG) and inertial measurement units (IMU) to classify physical fatigue during natural over-ground walking. Their hybrid CNN-LSTM-Attention model, evaluated 
-via leave-one-subject-out cross-validation, achieved 87.94\% accuracy, proving that combining physiological markers from the gastrocnemius with kinematic jerk signals significantly 
+electromyography (sEMG) and inertial measurement units (IMU) to classify physical fatigue during natural over-ground walking. Their hybrid Convolutional Neural Networks-Long Short-Term Memory (CNN-LSTM)-Attention 
+model, evaluated via leave-one-subject-out cross-validation, achieved 87.94\% accuracy, proving that combining physiological markers from the gastrocnemius with kinematic jerk signals significantly 
 enhances system robustness against individual variability~\cite{b6}. Similarly, Otálora et al. demonstrated that for upper limb fatigue estimation during repetitive lifting, a combination 
 of IMUs and Optical Fiber Sensors (OFS) achieved 95.4\% accuracy. Their findings highlight that while EMG is a gold standard for bio-electrical muscle function, its reliability 
 in long-term work environments can be compromised by factors like skin perspiration, making supplemental kinematic data essential~\cite{b9}.
 
 The choice of classifier and processing pipeline is critical for real-time mobile deployment. Baigarayeva et al. developed an IoT-based system, "Qimyl," which performs on-device 
-feature extraction (RMS, MAV, MDF) to classify muscle fatigue during sustained isometric tasks. By comparing logistic regression, decision trees (DT), and XGBoost, they identified 
+feature extraction (RMS, MAV, median frequency (MDF)) to classify muscle fatigue during sustained isometric tasks. By comparing logistic regression, decision trees (DT), and XGBoost, they identified 
 DT as achieving the highest accuracy (90.7\%) for their specific submaximal grip tasks. Furthermore, their work emphasizes the value of synchronizing objective EMG features 
 with subjective self-assessments (e.g., the Borg scale) to improve the ecological validity of the models~\cite{b5}.
 
@@ -184,7 +184,7 @@ Zero Crossing (ZC) and Slope Sign Change (SSC): These provide a simple represent
   SSC = \sum_{i = 2}^{N - 1} f[(x_i - x_{i-1}) \cdot (x_i - x_{i+1})]
 \end{equation}
 
-To optimize BLE bandwidth, the system bundles five 30-byte frames into a single 150-byte payload, transmitted to the mobile hub every 100 ms.
+To optimize BLE bandwidth, the system bundles five 30-byte frames into a single 150-byte payload, transmitted to the mobile hub every 100ms.
 
 
 \begin{figure}[b]
@@ -204,9 +204,9 @@ activity, the application utilizes asynchronous background threads for inference
 
 \subsection{Temporal Smoothing and Output Stability}
 
-To handle the inherent mechanical noise of high-intensity basketball movements, the system utilizes a 300 ms sliding window with a 100 ms step size for feature aggregation. A critical contribution of this 
+To handle the inherent mechanical noise of high-intensity basketball movements, the system utilizes a 300ms sliding window with a 100ms step size for feature aggregation. A critical contribution of this 
 architecture is the implementation of a post-processing temporal smoothing layer. Utilizing a continuous sliding window (implemented via an \textit{ArrayDeque}), a Majority Voting algorithm evaluates the last five 
-local predictions, providing a 500 ms context. This logic acts as a digital low-pass filter, effectively eliminating prediction "flickering" and hardware-induced false positives, thereby ensuring a stable and 
+local predictions, providing a 500ms context. This logic acts as a digital low-pass filter, effectively eliminating prediction "flickering" and hardware-induced false positives, thereby ensuring a stable and 
 reliable stream of activity classifications during steady-state movements.
 
 
@@ -216,7 +216,7 @@ The architecture employs a dual-tier approach, for movement recognition, to comp
 
 \begin{itemize}
   \item Edge Tier (TinyML): A lightweight, quantized Neural Network (NN) is embedded directly within the Android application using TensorFlow Lite. This model provides ultra-low latency inference, enabling real-time feedback and driving the deterministic injury-prevention algorithm independently of network availability.
-  \item Cloud Tier (Random Forest): Simultaneously, the 300 ms window is serialized into a JSON payload and transmitted via an asynchronous HTTP POST request to a Flask-based server. The server hosts a high-dimensional Random Forest (RF) classifier used for deep analysis and comparative validation against the edge model.
+  \item Cloud Tier (Random Forest): Simultaneously, the 300ms window is serialized into a JSON payload and transmitted via an asynchronous HTTP POST request to a Flask-based server. The server hosts a high-dimensional Random Forest (RF) classifier used for deep analysis and comparative validation against the edge model.
 \end{itemize}
 
 
@@ -243,7 +243,7 @@ validate the classification models across five macro-movements: Idle, Walking, R
 was only tested on one player that pushed his muscles to near involuntary contractions.
 
 The prototypes were mounted directly in the athletes' footwear to approximate the ideal
-positioning(on the bottom of the feet as an insole or a sock). The devices were secured using
+positioning (on the bottom of the feet as an insole or a sock). The devices were secured using
 the shoe laces and the powerbank was secured in the users socks, utilizing the existing
 infrastructure. With this configuration, the IMU accurately captures the kinematics of
 the foot, such as accelerations and rotational velocities during the athletes' movements.
@@ -256,7 +256,7 @@ sensors was chosen as recommended by the European Union (EU)'s SENIAM (Surface E
 signal-to-noise ratio.
 
 To ensure correct labeling for the supervised learning models, a manual annotation interface was integrated into the mobile application. Data collection was performed in controlled sessions where the 
-athlete executed specific basketball movements while researcher chose the correct label and turned a "Send data" switch within the Android UI.
+athlete executed specific basketball movements while researcher chose the correct label and turned a "Send data" switch within the Android User Interface (UI).
 
 When the switch was activated, the application bundled the incoming 30-feature sensor vector with the corresponding label (e.g., Defensive Sliding or Running), user ID and time, before transmitting the packet to the 
 InfluxDB database.
@@ -264,18 +264,18 @@ InfluxDB database.
 \subsection{Model Training and Convergence}
 
 The TinyML model demonstrated robust learning, achieving a validation accuracy of approximately 94% with synchronized descent in categorical cross-entropy loss, indicating 
-high generalization. Conversely, the Cloud-based Random Forest (RF) was evaluated using ROC and Precision-Recall curves. The Area Under the Curve (AUC) for all classes 
+high generalization. Conversely, the Cloud-based Random Forest (RF) was evaluated using Receiver-Operating Characteristic (ROC) and Precision-Recall (PR) curves. The Area Under the Curve (AUC) for all classes 
 approached 1.0, and the PR curves confirmed the model's ability to handle the class imbalance inherent in basketball data (e.g., rare rebounding events vs. frequent 
 running/walking).
 
 \subsection{Feature Importance and Sensor Contribution}
 
-A core contribution of this work is the validation of EMG integration. Gini Feature Importance analysis (Fig.~\ref{featureImportance}) revealed that EMG-derived features, specifically Variance 
-(VAR) and Root Mean Square (RMS), were the primary contributors to classification accuracy. This confirms that physiological electrical activity provides critical intent-based 
+A core contribution of this work is the validation of EMG integration. Gini Feature Importance analysis (Fig.~\ref{featureImportance}) revealed that EMG-derived features, specifically VAR and RMS, were the primary 
+contributors to classification accuracy. This confirms that physiological electrical activity provides critical intent-based 
 context that kinematics alone lack. Additionally, the model exhibited a preference for features from the dominant (left) limb, successfully capturing subject-specific 
 biomechanical asymmetries.
 
-\begin{figure}[b]
+\begin{figure}[tb]
 \centerline{\includegraphics[width=\linewidth]{featureImportance.jpg}}
 \caption{Feature Importance.}
 \label{featureImportance}
@@ -294,13 +294,13 @@ filter that neutralized prediction flickering. Confusion matrix analysis (Fig.~\
 transient events like "Rebounding," which were often outvoted by surrounding states. This identifies a fundamental trade-off: smoothing is essential for consistent 
 activity tracking but may require dynamic windowing for explosive event detection in future iterations.
 
-\begin{figure}[b]
+\begin{figure}[tb]
 \centerline{\includegraphics[width=\linewidth]{testConfusionMatrixTinyMLRaw.jpg}}
 \caption{TinyML Confusion Matrix.}
 \label{CFRaw}
 \end{figure}
 
-\begin{figure}[b]
+\begin{figure}[tb]
 \centerline{\includegraphics[width=\linewidth]{testConfusionMatrixTinyMLSmoothed.jpg}}
 \caption{TinyML with Smoothing Confusion Matrix.}
 \label{CFSmoothed}
@@ -374,10 +374,10 @@ threshold breaches with clinical physiological markers will further refine the s
 
 
 \begin{thebibliography}{00}
-\bibitem{b1} Lutz, Jonas \& Memmert, Daniel \& Raabe, Dominik \& Dornberger, Rolf \& Donath, Lars. (2019). Wearables for Integrative Performance and Tactic Analyses: Opportunities, Challenges, and Future Directions. International Journal of Environmental Research and Public Health. 17. 59. 10.3390/ijerph17010059. 
-\bibitem{b6} Hwang, Soree \& Kwon, Nayeon \& Lee, Dongwon \& Kim, Jongman \& Yang, Sumin \& Youn, Inchan \& Moon, Hyuk-June \& Sung, Joon-Kyung \& Han, Sungmin. (2025). A Multimodal Fatigue Detection System Using sEMG and IMU Signals with a Hybrid CNN-LSTM-Attention Model. Sensors. 25. 3309. 10.3390/s25113309. 
-\bibitem{b9} Otálora S, Segatto MEV, Monteiro ME, Múnera M, Díaz CAR, Cifuentes CA. Data-Driven Approach for Upper Limb Fatigue Estimation Based on Wearable Sensors. Sensors (Basel). 2023 Nov 20;23(22):9291. doi: 10.3390/s23229291.
-\bibitem{b5} Baigarayeva, Zhanel \& Boltaboyeva, Assiya \& Imanbek, Baglan \& Ozhikenov, Kassymbek \& Karymssakova, Nurgul \& Beisembekova, Roza. (2025). Machine learning-based classification of local muscle fatigue using electromyography signals for enhanced rehabilitation outcomes. International Journal of Electrical and Computer Engineering (IJECE). 15. 5954. 10.11591/ijece.v15i6.pp5954-5967. 
+\bibitem{b1} Lutz, Jonas \& Memmert, Daniel \& Raabe, Dominik \& Dornberger, Rolf \& Donath, Lars. (2019). Wearables for Integrative Performance and Tactic Analyses: Opportunities, Challenges, and Future Directions. International Journal of Environmental Research and Public Health. 
+\bibitem{b6} Hwang, Soree \& Kwon, Nayeon \& Lee, Dongwon \& Kim, Jongman \& Yang, Sumin \& Youn, Inchan \& Moon, Hyuk-June \& Sung, Joon-Kyung \& Han, Sungmin. (2025). A Multimodal Fatigue Detection System Using sEMG and IMU Signals with a Hybrid CNN-LSTM-Attention Model. Sensors.  
+\bibitem{b9} Otálora S, Segatto MEV, Monteiro ME, Múnera M, Díaz CAR, Cifuentes CA. Data-Driven Approach for Upper Limb Fatigue Estimation Based on Wearable Sensors. Sensors (Basel). 2023 Nov 20. doi: 10.3390/s23229291.
+\bibitem{b5} Baigarayeva, Zhanel \& Boltaboyeva, Assiya \& Imanbek, Baglan \& Ozhikenov, Kassymbek \& Karymssakova, Nurgul \& Beisembekova, Roza. (2025). Machine learning-based classification of local muscle fatigue using electromyography signals for enhanced rehabilitation outcomes. International Journal of Electrical and Computer Engineering (IJECE). 
 \bibitem{b2} Qassim, H.M.; Hasan, W.Z.W.; Ramli, H.R.; Harith, H.H.; Mat, L.N.I.; Ismail, L.I. Proposed Fatigue Index for the Objective Detection of Muscle Fatigue Using Surface Electromyography and a Double-Step Binary Classifier. Sensors 2022, 22, 1900. https://doi.org/10.3390/s22051900 
 \bibitem{b4} Kamaruddin, Asyikin \& Khalid, Puspa Inayat \& Sha'ameri, A.Z.. (2015). The Use of Surface Electromyography in Muscle Fatigue Assessments-A Review. Jurnal Teknologi.  
 \bibitem{b7} Seniam (Surface ElectroMyoGraphy for the Non-Invasive Assessment of Muscles) Project Website. url: http://seniam.org/
