@@ -122,13 +122,25 @@ frequency-domain analysis remains superior for quantifying the physiological shi
 \label{system_architecture}
 
 The proposed system follows a decentralized, multi-modal architecture designed to bridge localized physiological sensing with high-level cloud analytics. The framework is 
-divided into three primary layers: the sensor-embedded hardware, the mobile edge-computing hub, and the cloud-based inference server (Fig.~\ref{system_architecture}).
+divided into three primary layers: the sensor-embedded hardware, the mobile edge-computing hub, and the cloud-based inference server highlighted in yellow, blue and green respectfully in Fig.~\ref{systemOverview}.
 
 \begin{figure*}[htbp]
 \centerline{\includegraphics[width=0.9\textwidth]{System_Overview.jpg}}
 \caption{System Overview.}
 \label{systemOverview}
 \end{figure*}
+
+\subsection{Overview}
+
+As illustrated in Fig.~\ref{systemOverview}, the architecture facilitates a high-bandwidth data pipeline that transitions from raw physical signals to actionable biofeedback. The process is categorized into three 
+distinct operational stages:
+
+\begin{enumerate}
+\item \textbf{Acquisition Layer:} The footwear hardware captures bilateral IMU and EMG signals, calculates six EMG features, and sends the data to the next layer through BLE.
+\item \textbf{Edge Computing Hub:} The Android application serves as the connection point between the user, the prototypes and the cloud. It handles the simultaneous asynchronous streams from both devices, performing temporal synchronization to align the 15 features from each foot into a unified 30-feature vector. This is where the cramping warning and the localized TinyML inference occur, allowing for "offline" movement recognition and immediate feedback to the athlete.
+\item \textbf{Cloud and Analytical Layer:} The mobile app forwards the synchronized data to a cloud infrastructure. Data is stored in a time-series database (InfluxDB) for historical visualization, while the Flask-based server executes the high-dimensional Random Forest model. 
+\end{enumerate}
+
 
 \subsection{Hardware Prototype}
 
